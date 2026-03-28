@@ -983,7 +983,7 @@ const PRODUCTS = [
     cost:1.05,
     desc:"Your restaurant mascot or character modeled and turned into a click mechanism. Completely bespoke — we design it and print it. One-of-a-kind branded merch that nobody else has.",
     note:"+$25 design fee for custom character",
-    photos:["images/custom-clicker-1.jpg"]
+    photos:["images/custom-clicker-1.jpg","images/custom-clicker-2.jpg","images/custom-clicker-3.jpg"]
   },
   {
     id:17, name:"Miami Icons Keychain", emoji:"🌴",
@@ -1059,7 +1059,7 @@ inputs.forEach(i => { if (i.name) data[i.name] = i.value; });
       },
       body: JSON.stringify(data)
     });
-    
+
     const json = await res.json();
     console.log('Formspree response:', json);
     if (res.ok) {
