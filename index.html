@@ -533,6 +533,141 @@ footer p {
 }
 footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(245,240,232,0.75); }
 
+.contact-section {
+  background: var(--header-bg);
+  padding: 72px 28px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 12px,
+    rgba(255,255,255,0.02) 12px, rgba(255,255,255,0.02) 24px
+  );
+}
+.contact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  position: relative;
+}
+.contact-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pop-yellow);
+  margin-bottom: 16px;
+}
+.contact-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+.contact-headline em { font-style: normal; color: var(--pop-red); }
+.contact-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 32px;
+}
+.contact-perks { display: flex; flex-direction: column; gap: 12px; }
+.contact-perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(245,240,232,0.7);
+}
+.contact-perk-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--pop-teal);
+  flex-shrink: 0;
+}
+.contact-form {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.form-input, .form-select, .form-textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: 10px;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--ink); }
+.form-textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+.form-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.form-submit:hover { background: var(--pop-red); }
+.form-submit:active { transform: scale(0.98); }
+.form-success { display: none; text-align: center; padding: 24px 0 8px; }
+.form-success-icon { font-size: 40px; margin-bottom: 12px; }
+.form-success-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.form-success-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+@media (max-width: 700px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-section { padding: 52px 20px 60px; }
+}
+
 @media (max-width: 560px) {
   .hero-headline { font-size: 44px; }
   .nav-descriptor { display: none; }
@@ -553,6 +688,7 @@ footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(2
       <span class="nav-descriptor">Print Fail Repeat — Product Catalog</span>
     </div>
     <span class="nav-year">2025</span>
+    <a href="#contact" style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;color:rgba(245,240,232,0.6);text-decoration:none;letter-spacing:0.5px;transition:color 0.15s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(245,240,232,0.6)'">Contact</a>
   </div>
 </nav>
 
@@ -588,6 +724,62 @@ footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(2
     </div>
   </div>
 </div>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="contact-eyebrow">Get In Touch</p>
+      <h2 class="contact-headline">Let's make<br>something<br><em>worth keeping.</em></h2>
+      <p class="contact-body">Whether you're planning a grand opening, an event, or just want something your guests will actually hold onto — we'd love to hear about it.</p>
+      <div class="contact-perks">
+        <div class="contact-perk"><span class="contact-perk-dot"></span>Custom colors, quantities &amp; characters</div>
+        <div class="contact-perk"><span class="contact-perk-dot"></span>MOQ of just 1 unit — no minimums</div>
+        <div class="contact-perk"><span class="contact-perk-dot"></span>We reply within 24 hours</div>
+        <div class="contact-perk"><span class="contact-perk-dot"></span>Bulk pricing from 25 units</div>
+      </div>
+    </div>
+    <div class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Business / Venue</label>
+        <input class="form-input" type="text" name="business" placeholder="Restaurant name, event, etc.">
+      </div>
+      <div class="form-group">
+        <label class="form-label">What are you interested in?</label>
+        <select class="form-select" name="interest">
+          <option value="">Select a product or idea...</option>
+          <option>Clickers (dumpling, sushi, fish...)</option>
+          <option>Keychains (ramen, boba, miami...)</option>
+          <option>Chopstick Rests</option>
+          <option>Custom Character Clicker</option>
+          <option>NFC Keychain</option>
+          <option>Something not in the catalog</option>
+          <option>Full event / grand opening package</option>
+          <option>Just browsing, have questions</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" name="message" placeholder="Tell us about your venue, quantity, colors, timeline — anything helps!"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm(event)">Send Message →</button>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">🎉</div>
+        <div class="form-success-title">You're in!</div>
+        <div class="form-success-body">We got your message and will reply within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <p><strong>PFR</strong> · Print Fail Repeat · All prices USD · MOQ 1 unit · Custom colors available</p>
@@ -837,6 +1029,45 @@ function prices(cost) {
   };
 }
 
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target;
+  const form = document.getElementById('contactForm');
+  const inputs = form.querySelectorAll('input,select,textarea');
+
+  let valid = true;
+  inputs.forEach(i => { if (i.required && !i.value) valid = false; });
+  if (!valid) {
+    btn.style.background = 'var(--pop-red)';
+    btn.textContent = 'Please fill in name & email →';
+    setTimeout(() => { btn.style.background = ''; btn.textContent = 'Send Message →'; }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const data = {};
+  inputs.forEach(i => { if (i.name) data[i.name] = i.value; });
+
+  try {
+    const res = await fetch('https://formspree.io/f/mqegevoz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) {
+      inputs.forEach(i => i.value = '');
+      btn.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else { throw new Error(); }
+  } catch {
+    btn.textContent = 'Something went wrong — try again';
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = 'Send Message →'; }, 3000);
+  }
+}
+
 function buildCards() {
   const grid = document.getElementById('grid');
   const nr = document.getElementById('noResults');
@@ -953,7 +1184,7 @@ function closePanel() {
 }
 
 function inquire(name) {
-  alert(`To inquire about "${name}", contact us:\n\nEmail: hello@printfailrepeat.com\nInstagram: @printfailrepeat\n\nWe'll reply within 24 hours.`);
+  alert(`To inquire about "${name}", contact us:\n\nInstagram: @printfailrepeat\n\nWe'll reply within 24 hours.`);
 }
 
 buildCards();
