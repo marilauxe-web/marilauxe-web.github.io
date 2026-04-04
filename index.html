@@ -1228,7 +1228,7 @@ const thumbsHTML = hasMedia
 
 function swapImg(src, thumb) {
   const isVideo = src.endsWith('.mp4') || src.endsWith('.mov');
-  const main = document.getElementById('panelMainPhoto');
+  const main = document.querySelector('.panel-main-img');
   if (isVideo) {
     main.innerHTML = `<video src="${src}" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></video>`;
   } else {
