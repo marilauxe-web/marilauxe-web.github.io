@@ -1090,8 +1090,12 @@ function buildCards() {
   const grid = document.getElementById('grid');
   const nr = document.getElementById('noResults');
   PRODUCTS.forEach(p => {
-    const pr = prices(p.cost);
-    const dotsHTML = p.venues.map(v =>
+const pr = p.t1 ? {t1:p.t1, t2:p.t2, t3:p.t3} : prices(p.cost);
+const hasPhoto = p.photos && p.photos.length > 0;
+const imgHTML = hasPhoto
+  ? `<img src="${p.photos[0]}" alt="${p.name}" loading="lazy">`
+  : `<span class="ph">${p.emoji}</span>`;
+const dotsHTML = p.venues.map(v =>
       `<span class="venue-dot ${VENUE_META[v].cls}" title="${VENUE_META[v].label}"></span>`
     ).join('');
     const card = document.createElement('div');
