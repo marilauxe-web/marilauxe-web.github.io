@@ -721,12 +721,12 @@ footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(2
 <div class="hero">
   <p class="hero-eyebrow">Promotional &amp; Branded Swag</p>
   <h1 class="hero-headline">Made for<br>your moment<br><em>to keep.</em></h1>
-  <p class="hero-body">Usable, Lovable things worth keeping. Custome 3D printer swag for your events, conferences and business.</p>
+  <p class="hero-body">Usable, Lovable things worth keeping. Custom 3D printer swag for your events, conferences and business.</p>
 </div>
 
 <div class="smart-banner">
   <div class="smart-banner-inner">
-    <p class="smart-banner-text"><strong>Ready-made designs you can order today.</strong> Every piece is customizable — colors, quantities, and characters on request. Each product is tagged for where it works best.</p>
+    <p class="smart-banner-text"><strong>Ready-made designs you can order today.</strong> Every piece is customizable — colors, quantities, and characters on request.</p>
   </div>
 </div>
 
@@ -780,11 +780,11 @@ footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(2
         <label class="form-label">What are you interested in?</label>
         <select class="form-select" name="interest">
           <option value="">Select a product or idea...</option>
-          <option>Clickers (dumpling, sushi, fish...)</option>
-          <option>Keychains (ramen, boba, miami...)</option>
-          <option>Chopstick Rests</option>
-          <option>Custom Character Clicker</option>
+          <option>Swag</option>
           <option>NFC Keychain</option>
+          <option>Clickers</option>
+          <option>Keychains</option>
+          <option>Custom Character Clicker</option>
           <option>Something not in the catalog</option>
           <option>Full event / grand opening package</option>
           <option>Just browsing, have questions</option>
@@ -839,28 +839,7 @@ footer strong { font-family: 'Syne', sans-serif; font-weight: 800; color: rgba(2
 // Change: id (next number), name, emoji, venues, cost, desc, note, photos
 // Save, commit in GitHub Desktop, push — live in 60 seconds.
 //
-// VENUES OPTIONS: "ramen" | "cafe" | "any" | "events"
-// COST: the raw material cost (pricing tiers are calculated automatically)
 //
-// PHOTO FILENAMES PER PRODUCT (what to name your files):
-// -------------------------------------------------------
-//  id:1  → images/nfc-keychain-1.jpg
-//  id:2  → images/dumpling-clicker-1.jpg, dumpling-clicker-2.jpg ...
-//  id:3  → images/kawaii-sushi-clickers-1.jpg, kawaii-sushi-clickers-2.jpg ...
-//  id:4  → images/realistic-sushi-clickers-1.jpg, realistic-sushi-clickers-2.jpg ...
-//  id:5  → images/soy-sauce-fish-1.jpg, soy-sauce-fish-2.jpg ...
-//  id:6  → images/boba-clicker-1.jpg
-//  id:7  → images/ramen-bowl-kawaii-1.jpg
-//  id:8  → images/ramen-bowl-bw-1.jpg
-//  id:9  → images/naruto-keychain-1.jpg
-//  id:10 → images/boba-jar-1.jpg
-//  id:11 → images/boba-cup-1.jpg
-//  id:12 → images/kewpie-rest-1.jpg
-//  id:13 → images/soy-sauce-rest-1.jpg
-//  id:14 → images/wavy-noodle-rest-1.jpg, wavy-noodle-rest-2.jpg ...
-//  id:15 → images/fish-rest-1.jpg
-//  id:16 → images/custom-clicker-1.jpg
-//  id:17 → images/miami-icons-1.jpg
 // =============================================================
 
 const PRODUCTS = [
@@ -868,16 +847,15 @@ const PRODUCTS = [
     id:1, name:"NFC Logo Keychain", emoji:"🔑",
     tagline:"Tap to share your menu, specials, or socials.",
     venues:["restaurants","events"],
-    cost:0.72,
     desc:"Tap-enabled NFC keychain with your logo embedded. Perfect for table-side digital menus, loyalty programs, or social links. Each chip is pre-programmed to your URL.",
-    note:"+$25 design fee · NFC chip included",
+    note:"for orders <25 a design fee is added · NFC chip included",
     photos:["images/nfc-demo.gif","images/nfc-keychain-1.jpg","images/nfc-keychain-2.jpg","images/nfc-keychain-3.jpg","images/nfc-keychain-4.jpg"]
   },
   {
     id:2, name:"Dumpling Clicker", emoji:"🥟",
     tagline:"Bao bun click-top in a woven bamboo steamer. Guests won't stop.",
     venues:["restaurants","events"],
-    cost:1.05,
+    price:"5.00", 
     desc:"A satisfying click-top bao bun — woven bamboo steamer base with a fluffy bun on top. Guests won't stop clicking it. The most talked-about takeaway gift for any Asian restaurant.",
     note:"Also available as a keychain",
     photos:["images/dumpling-clicker-1.jpg","images/dumpling-clicker-2.jpg","images/dumpling-clicker-3.jpg"]
@@ -886,7 +864,7 @@ const PRODUCTS = [
     id:3, name:"Kawaii Sushi Clickers", emoji:"🍣",
     tagline:"Cute sushi clickers with kawaii faces. Nigiri or onigiri.",
     venues:["restaurants"],
-    cost:0.99,
+    price:"5.00",
     desc:"Adorable chibi-style sushi clickers with smooth satisfying action. Available as nigiri or onigiri — cute kawaii faces make them instantly lovable. Perfect for gift bags, counter merch, or a full sushi-themed set.",
     note:"Available as nigiri or onigiri",
     photos:["images/cute-sushi-clickers-1.jpg","images/cute-sushi-clickers-2.jpg","images/cute-sushi-clickers-3.jpg","images/cute-nigiri-clickers-4.jpg"]
@@ -895,7 +873,7 @@ const PRODUCTS = [
     id:4, name:"Realistic Sushi Clickers", emoji:"🐟",
     tagline:"Realistic salmon and shrimp nigiri clickers. Almost too good to eat.",
     venues:["restaurants"],
-    cost:1.04,
+    price:"5.00",
     desc:"Hyper-detailed nigiri clickers that look almost good enough to eat. Salmon is painted in realistic orange tones with visible grain texture. Shrimp has delicate translucent pink curves. Collectors and sushi lovers go wild for these.",
     note:"Available as salmon or shrimp nigiri",
     photos:["images/realistic-sushi-1.jpg","images/realistic-sushi-2.jpg","images/realistic-sushi-3.jpg","images/realistic-sushi-4.jpg","images/realistic-sushi-5.jpg"]
@@ -904,25 +882,23 @@ const PRODUCTS = [
     id:5, name:"Soy Sauce Fish Clicker", emoji:"🐠",
     tagline:"The soy sauce fish everyone knows — now a satisfying fidget clicker.",
     venues:["restaurants"],
-    cost:0.99,
+    price:"5.00",
     desc:"The classic soy sauce fish bottle everyone knows from their takeout bag — reimagined as a satisfying fidget clicker. Available in black and white. Iconic silhouette, instant recognition.",
-    note:"Available in black + white",
+    note:"Available in multiple colors",
     photos:["images/soy-sauce-fish-1.jpg","images/soy-sauce-fish-2.jpg"]
   },
   {
     id:6, name:"Boba Clicker", emoji:"🧋",
     tagline:"Chunky boba cup clicker. Pearl details, dome click, deep purple.",
     venues:["restaurants"],
-    cost:0.85,
     desc:"Chunky boba cup clicker with pearl details and a satisfying dome click. The boba community loves these — great for tea shops, bubble tea events, and anyone who takes their boba seriously.",
-    note:"Purple colorway",
+    note:"Available in multiple colors",
     photos:["images/boba-clicker-1.jpg","images/boba-clicker-2.jpg"]
   },
   {
     id:7, name:"Kawaii Ramen Bowl Keychain", emoji:"🍜",
     tagline:"Kawaii ramen bowl bag charm. The perfect grand opening giveaway.",
     venues:["restaurants","events"],
-    cost:0.45,
     desc:"Miniature ramen bowl keychain with an adorable kawaii face. Lightweight, durable, and instantly recognizable — the perfect bag charm or grand opening giveaway that guests actually keep.",
     note:"",
     photos:["images/ramen-bowl-kawaii-1.jpg","images/ramen-bowl-kawaii-2.jpg","images/ramen-bowl-kawaii-3.jpg","images/ramen-bowl-kawaii-4.jpg"]
@@ -931,7 +907,6 @@ const PRODUCTS = [
     id:8, name:"B&W Ramen Bowl Keychain", emoji:"🍥",
     tagline:"Bold black-and-white ramen bowl. Minimal, modern, fits any brand.",
     venues:["restaurants"],
-    cost:0.45,
     desc:"Clean black-and-white ramen bowl keychain with bold linework. Minimal and modern — pairs with any brand palette without competing. A subtle nod to the craft.",
     note:"",
     photos:["images/ramen-bowl-bw-1.jpg","images/ramen-bowl-bw-2.jpg","images/ramen-bowl-bw-3.jpg"]
@@ -940,7 +915,7 @@ const PRODUCTS = [
     id:9, name:"Naruto Ramen Keychain", emoji:"🌀",
     tagline:"Naruto swirl fishcake keychain. Anime fans will lose their minds.",
     venues:["restaurants","events"],
-    cost:0.45,
+    price:"4.00",
     desc:"Inspired by the legendary Ichiraku ramen — featuring the iconic naruto swirl fishcake topping. A fan favorite that connects instantly with anime-loving diners and makes any ramen shop feel like the real deal.",
     note:"",
     photos:["images/naruto-keychain-1.jpg","images/naruto-keychain-2.jpg","images/naruto-keychain-3.jpg"]
@@ -951,23 +926,23 @@ const PRODUCTS = [
     venues:["restaurants","events"],
     cost:0.31,
     desc:"Tiny mason jar packed with boba pearls, rendered in translucent purple. Incredibly detailed at this scale. A great low-cost add-on for gift bundles or grab-and-go merch at the counter.",
-    note:"Purple colorway",
+    note:"Available in multiple colors",
     photos:["images/boba-jar-1.jpg","images/boba-jar-2.jpg"]
   },
   {
     id:11, name:"Kawaii Boba Cup Keychain", emoji:"🥤",
     tagline:"The boba cup everyone recognizes. Kawaii style, instant charm.",
     venues:["restaurants","events",],
-    cost:0.31,
+    price:"4.00",
     desc:"The iconic plastic boba cup with straw — kawaii style. High charm, low cost, instant recognition. One of the most requested keychains we make. Hard to say no to.",
-    note:"Red/silver colorway",
+    note:"Available in multiple colors",
     photos:["images/boba-cup-1.jpg","images/boba-cup-2.jpg"]
   },
   {
     id:12, name:"Kewpie Mayo Chopstick Rest", emoji:"🧴",
     tagline:"Kewpie mayo chopstick rest. Sets the table with personality.",
     venues:["restaurants"],
-    cost:0.27,
+    price:"3.00",
     desc:"The Kewpie mayo bottle everyone loves, shrunk down into a chopstick rest. Instantly recognizable on any Asian fusion table. Sets of 4-6 make a great gift bundle or tableware upgrade.",
     note:"",
     photos:["images/kewpie-rest-1.jpg","images/kewpie-rest-2.jpg","images/kewpie-rest-3.jpg","images/kewpie-rest-4.jpg"]
@@ -976,7 +951,7 @@ const PRODUCTS = [
     id:13, name:"Soy Sauce Chopstick Rest", emoji:"🫗",
     tagline:"Soy sauce bottle chopstick rest. Playful detail, functional design.",
     venues:["restaurants"],
-    cost:0.27,
+    price: "3.00",
     desc:"Miniature soy sauce bottle reimagined as a chopstick rest. Classic, playful, and functional — elevates any Asian restaurant table with a detail guests notice and remember.",
     note:"",
     photos:["images/soy-sauce-rest-1.jpg","images/soy-sauce-rest-2.jpg","images/soy-sauce-rest-3.jpg","images/soy-sauce-rest-4.jpg","images/soy-sauce-rest-5.jpg"]
@@ -985,25 +960,25 @@ const PRODUCTS = [
     id:14, name:"Wavy Noodle Chopstick Rest", emoji:"〰️",
     tagline:"Sculptural noodle wave chopstick rest. Red + black available.",
     venues:["restaurants"],
-    cost:0.29,
+    price:"3.00",
     desc:"Abstract wavy noodle form that doubles as a sculptural chopstick rest. Looks like it belongs in a design museum, works perfectly on a dinner table. Available in red and black.",
-    note:"Red + black available",
+    note:"Available in multiple colors",
     photos:["images/wavy-noodle-rest-1.jpg","images/wavy-noodle-rest-2.jpg"]
   },
   {
     id:15, name:"Articulated Fish Chopstick Rest", emoji:"🐡",
     tagline:"Fully articulated fish that wiggles. Guests always pick it up.",
     venues:["restaurants"],
-    cost:0.29,
+    price:"3.00",
     desc:"Segmented, fully articulated fish that lays flat as a chopstick rest — but wiggles when touched. Guests always pick it up. Conversation at the table is guaranteed.",
-    note:"",
+    note:"Available in multiple colors",
     photos:["images/fish-rest-1.jpg","images/fish-rest-2.jpg"]
   },
   {
     id:16, name:"Custom Character Clicker", emoji:"🎭",
     tagline:"Your mascot as a clicker. Completely bespoke, one of a kind.",
     venues:["restaurants","events"],
-    cost:1.05,
+    price: "8.00",
     desc:"Your restaurant mascot or character modeled and turned into a click mechanism. Completely bespoke — we design it and print it. One-of-a-kind branded merch that nobody else has.",
     note:"+$25 design fee for custom character",
     photos:["images/custom-clicker-1.jpg","images/custom-clicker-2.jpg","images/custom-clicker-3.jpg"]
@@ -1012,17 +987,15 @@ const PRODUCTS = [
     id:18, name:"Taiyaki Ice Cream Clicker", emoji:"🐡",
     tagline:"Fish-shaped taiyaki with ice cream on top. Too cute to put down.",
     venues:["restaurants"],
-    cost:0.87,
     price:"6.50",
     desc:"A taiyaki fish cone with a swirl of ice cream on top — reimagined as a satisfying fidget clicker. One of our most instantly lovable designs. Perfect for any Asian café or dessert spot.",
-    note:"Available in multiple colorways",
+    note:"Available in multiple colors",
     photos:["images/taiyaki-1.jpg","images/taiyaki-2.jpg","images/taiyaki-3.jpg"]
   },
   {
     id:19, name:"Matcha Bowl Clickers", emoji:"🍵",
     tagline:"Aesthetic matcha bowl clicker. Plain or with a little whisk on top.",
     venues:["restaurants"],
-    cost:0.91,
     price:"6.50",
     desc:"A beautifully detailed matcha bowl with delicious fill — available plain or with a miniature whisk resting on top. Both click satisfyingly. The most aesthetic thing on any café counter.",
     note:"Available as plain bowl or bowl with whisk",
@@ -1032,10 +1005,9 @@ const PRODUCTS = [
     id:20, name:"Matcha Whisk Charm Keychain", emoji:"🍃",
     tagline:"Tiny matcha whisk keychain. Instant recognition for any matcha lover.",
     venues:["restaurants","events"],
-    cost:0.39,
     price:"3.50",
     desc:"A miniature matcha whisk rendered in stunning detail — green bristles, bamboo handle, the whole thing. Lightweight keychain that any matcha lover will recognize immediately. Great counter merch for cafés.",
-    note:"Prints 5 at a time",
+    note:"Available in multiple colors",
     photos:["images/matcha-whisk-1.jpg","images/matcha-whisk-2.jpg"]
   },
 ];
