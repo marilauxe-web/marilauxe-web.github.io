@@ -903,7 +903,7 @@ const PRODUCTS = [
   {
     id:5, name:"Soy Sauce Fish Clicker", emoji:"🐠",
     tagline:"The soy sauce fish everyone knows — now a satisfying fidget clicker.",
-    venues:["restautants"],
+    venues:["restaurants"],
     cost:0.99,
     desc:"The classic soy sauce fish bottle everyone knows from their takeout bag — reimagined as a satisfying fidget clicker. Available in black and white. Iconic silhouette, instant recognition.",
     note:"Available in black + white",
@@ -1013,7 +1013,7 @@ const PRODUCTS = [
     tagline:"Fish-shaped taiyaki with ice cream on top. Too cute to put down.",
     venues:["restaurants"],
     cost:0.87,
-    t1:"2.50", t2:"2.00", t3:"1.75",
+    price:"6.50",
     desc:"A taiyaki fish cone with a swirl of ice cream on top — reimagined as a satisfying fidget clicker. One of our most instantly lovable designs. Perfect for any Asian café or dessert spot.",
     note:"Available in multiple colorways",
     photos:["images/taiyaki-1.jpg","images/taiyaki-2.jpg","images/taiyaki-3.jpg"]
@@ -1023,30 +1023,21 @@ const PRODUCTS = [
     tagline:"Aesthetic matcha bowl clicker. Plain or with a little whisk on top.",
     venues:["restaurants"],
     cost:0.91,
-    t1:"2.75", t2:"2.25", t3:"1.85",
+    price:"6.50",
     desc:"A beautifully detailed matcha bowl with delicious fill — available plain or with a miniature whisk resting on top. Both click satisfyingly. The most aesthetic thing on any café counter.",
     note:"Available as plain bowl or bowl with whisk",
     photos:["images/matcha-bowl-1.jpg","images/matcha-bowl-2.jpg","images/matcha-bowl-3.jpg","images/matcha-bowl-4.jpg"]
   },
   {
-    id:20, name:"Matcha Whisk harm Keychain", emoji:"🍃",
+    id:20, name:"Matcha Whisk Charm Keychain", emoji:"🍃",
     tagline:"Tiny matcha whisk keychain. Instant recognition for any matcha lover.",
-    venues:["restautants","events"],
+    venues:["restaurants","events"],
     cost:0.39,
-    t1:"1.25", t2:"1.00", t3:"0.80",
+    price:"3.50",
     desc:"A miniature matcha whisk rendered in stunning detail — green bristles, bamboo handle, the whole thing. Lightweight keychain that any matcha lover will recognize immediately. Great counter merch for cafés.",
     note:"Prints 5 at a time",
     photos:["images/matcha-whisk-1.jpg","images/matcha-whisk-2.jpg"]
   },
-  {
-    id:17, name:"Miami Icons Keychain", emoji:"🌴",
-    tagline:"Miami landmarks on a keychain. Local pride, carried everywhere.",
-    venues:["events"],
-    cost:0.45,
-    desc:"A flat circle keychain featuring iconic Miami imagery — Art Deco hotels, palm trees, the skyline, or custom local landmarks. The first piece in our Miami Icons collection. Available with NFC chip on request.",
-    note:"NFC version available · Custom image on request",
-    photos:["images/miami-icons-1.jpg"]
-},
 ];
 
 // =============================================================
@@ -1070,12 +1061,34 @@ const VENUE_META = {
   events:      { cls:"vd-events",      label:"🎉 Conferences & Events" }
 };
 
-function prices(cost) {
-  return {
-    t1: (cost * 3).toFixed(2),
-    t2: (cost * 2.5).toFixed(2),
-    t3: (cost * 2).toFixed(2)
-  };
+// Price lookup — checks for hardcoded price first, else uses formula
+// Clickers: $6.50 | Keychains: $4.00 | Chopstick Rests: $3.00
+// NFC Keychain: $5.00 | Custom Character: $8.00
+// Matcha Whisk Keychain: $3.50
+const FIXED_PRICES = {
+  1: "5.00",   // NFC Logo Keychain
+  2: "6.50",   // Dumpling Clicker
+  3: "6.50",   // Kawaii Sushi Clickers
+  4: "6.50",   // Realistic Sushi Clickers
+  5: "6.50",   // Soy Sauce Fish Clicker
+  6: "6.50",   // Boba Clicker
+  7: "4.00",   // Kawaii Ramen Bowl Keychain
+  8: "4.00",   // B&W Ramen Bowl Keychain
+  9: "4.00",   // Naruto Ramen Keychain
+  10: "4.00",  // Boba Jar Keychain
+  11: "4.00",  // Kawaii Boba Cup Keychain
+  12: "3.00",  // Kewpie Mayo Chopstick Rest
+  13: "3.00",  // Soy Sauce Chopstick Rest
+  14: "3.00",  // Wavy Noodle Chopstick Rest
+  15: "3.00",  // Articulated Fish Chopstick Rest
+  16: "8.00",  // Custom Character Clicker
+  18: "6.50",  // Taiyaki Ice Cream Clicker
+  19: "6.50",  // Matcha Bowl Clickers
+  20: "3.50",  // Matcha Whisk Keychain
+};
+
+function getPrice(p) {
+  return p.price || FIXED_PRICES[p.id] || (p.cost * 3).toFixed(2);
 }
 
 async function submitForm(e) {
@@ -1130,7 +1143,6 @@ function buildCards() {
   const grid = document.getElementById('grid');
   const nr = document.getElementById('noResults');
   PRODUCTS.forEach(p => {
-const pr = p.t1 ? {t1:p.t1, t2:p.t2, t3:p.t3} : prices(p.cost);
 const hasPhoto = p.photos && p.photos.length > 0;
 const imgHTML = hasPhoto
   ? `<img src="${p.photos[0]}" alt="${p.name}" loading="lazy">`
@@ -1151,7 +1163,7 @@ const dotsHTML = p.venues.map(v =>
         <div class="card-tagline">${p.tagline || ''}</div>
         <div class="card-divider"></div>
         <div class="card-footer-row">
-          <div class="card-from"><span>From</span>$${pr.t3}</div>
+          <div class="card-from"><span>1 item @</span>$${getPrice(p)}</div>
           <button class="card-btn" onclick="event.stopPropagation();openPanel(${p.id})">View →</button>
         </div>
       </div>`;
@@ -1177,7 +1189,7 @@ function doFilter(tag, btn) {
 function openPanel(id) {
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
-  const pr = prices(p.cost);
+  const singlePrice = getPrice(p);
   const allMedia = [...(p.photos || []), ...(p.video ? [p.video] : [])];
 const hasMedia = allMedia.length > 0;
 const mainHTML = hasMedia
@@ -1217,7 +1229,7 @@ const thumbsHTML = hasMedia
     <p class="panel-desc">${p.desc}</p>
     <div class="ptable">
      <div class="ptable-simple">
-  From <strong>$${pr.t1}</strong> · Pricing improves <em>significantly</em> with bulk orders · Final price varies by design and customization
+  1 item @ <strong>$${singlePrice}</strong> · Bulk orders are a <em>significantly</em> better deal · Final price varies by design and customization
 </div>
     </div>
     ${designFee}${otherNote}
